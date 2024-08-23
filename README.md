@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Web Traffic Statistics Application
 
-## Getting Started
+## Overview
 
-First, run the development server:
+Create a web application to show simple web traffic statistics for government sites and pages. The data being displayed is about the number of pageviews and visits to different domains and pages.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Technologies
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Front end:** Next
+- **Back end:** ASP.NET Core 8
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Application Description
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The application will have one page, with:
 
-## Learn More
+- **Toggle:** Which view of the data to show.
+- **Table:** The web traffic data.
 
-To learn more about Next.js, take a look at the following resources:
+### View 1: 'Page Path' View
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Domain:** Domain of the website
+- **Page Path:** URL of the page being viewed on that website
+- **Pageviews:** Number of pageviews this page got in the past 90 days
+- **Estimated Visits:** Inferred based on another database table (see more below)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### View 2: 'Domain' View
 
-## Deploy on Vercel
+- **Domain:** Domain of the website
+- **Pageviews:** Number of pageviews this domain got, across all its page paths
+- **Estimated Visits:** Inferred based on another database table (see more below)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Data Notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The **Estimated Visits** column is inferred by matching the domain and hostname, and then using the pageviews from `path_pageviews` and the ratio of visits per pageview in `host_pageviews`. For example, if we have 100 pageviews for a given page path, and its corresponding domain in the `host_pageviews` table has 500 pageviews and 250 visits, the estimated visits for that page path would be 50.
+
+## Mockups
+
+Note that your views do not have to look exactly like these. It should have "decent" styling but does not need to have a lot of polish.
+
+### Page Path View
+
+![Page Path View](mocks/PagePath.png)
+
+### Domain View
+
+![Domain View](mocks/Domain.png)
