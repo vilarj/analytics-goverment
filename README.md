@@ -6,7 +6,7 @@ Create a web application to show simple web traffic statistics for government si
 
 ## Technologies
 
-- **Front end:** Next
+- **Front end:** Angular
 - **Back end:** ASP.NET Core 8
 
 ## Application Description
